@@ -1,0 +1,261 @@
+:root{
+
+--text-color: white;
+--bg-url: url(./assets/bg-mobile.jpg);
+--stroke-color: rgba(255,255,255,0.5);
+--surface-color: rgba(255,255,255,0.1);
+--surface-color-hover: rgba(255,255,255,0.05);
+--highlight-color: rgba(255,255,255,0.2);
+--sky:  url(./assets/moon-stars.svg);
+--icon-left: 0;
+--icon-right: auto;
+
+}
+
+.light {
+
+--text-color: black;
+--bg-url: url(./assets/bg-mobile-light.jpg);
+--stroke-color: rgba(0,0,0,0.5);
+--surface-color: rgba(0,0,0,0.05);
+--surface-color-hover: rgba(0,0,0,0.03);
+--highlight-color: rgba(0,0,0,0.1);
+--sky: url(./assets/sun.svg) ;
+--icon-left: auto;
+--icon-right: 0;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(--bg-url);
+  background-repeat: no-repeat;
+  background-position: top center; /* element's position is center. It begins from the top of the  page*/
+  background-size: cover; /*define tamanho da imagem - nesse caso,cobrir toda a área da página */
+}
+
+body {
+  /* shortcut/atalho */
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
+}
+
+body * {
+  font-family: "Roboto Mono", monospace;
+  color: var(--text-color);
+}
+
+#container {
+
+  width: 100%;
+  max-width: 588px;
+  margin: 56px auto 0px; /*layout de acordo com o que está escrito acima 
+        (top/lateral/bottom)*/
+
+  padding: 0 24px;
+
+}
+
+#profile {
+  text-align: center; /*alinhando profile. não é possível alinhá-lo com margin: auto, pq isso é propriedade block, enquanto profile está em inline*/
+  padding: 24px;
+}
+
+
+#profile img {
+  width: 112px;
+}
+
+#profile p {
+  font-weight: 1000;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+#socialinks {
+
+  text-align: center;
+  padding: 24px;
+  
+  display: flex;
+  flex-direction: row;
+
+  font-size: 24px;
+  
+  justify-content: center;
+  align-items: center;
+
+}
+
+#socialinks a {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+
+}
+
+#socialinks a:hover {
+
+  background: var(--surface-color-hover);
+  border-radius: 50%;
+  transition: background 0.7s;
+  backdrop-filter: blur(4px);
+
+}
+
+#switch {
+
+  position: relative;
+  width: 64px;
+
+  margin: 4px auto;
+
+}
+
+#switch button{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: white  var(--sky) no-repeat center;
+  border-radius: 50%;
+  border: 0;
+  transform: translateY(-50%);
+  top:50%;
+  right: var(--icon-right);
+  left: var(--icon-left);
+  
+  animation: slide-back 0.4s forwards;
+
+
+  
+  /* absoluto: posicionamento em relação a alguma área da página. Página
+  inteira é default. Parte da página é relative  */
+  position:absolute;
+  z-index: 0;
+}
+
+.light #switch button{
+  animation: slide-in 0.4s forwards;
+}
+
+#switch button:hover{
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
+
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  --webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+  
+}
+
+ul {
+
+  list-style: none;
+  
+  display: flex;  
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 24px 0px;
+  
+}
+
+ul li a {
+
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  text-decoration: none;
+
+  font-weight: 500;
+
+  transition: background 0.2s;
+}
+
+ul li a:hover {
+
+  background-color: rgba(255,255,255,0.05);
+  border: 1.5px solid var(--text-color);
+
+}
+
+footer {
+
+  padding: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+footer a {
+
+  text-decoration: none;
+
+  font-weight: 1200;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* media querry (consulta de mídia: que tipo de mídia o usuário utiliza?) */
+/* qual o tamanho da tela do dispositivo?*/
+
+@media (min-width: 700px) {
+
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* animação para switch button */
+
+@keyframes slide-in{
+
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back{
+
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+/* talvez adicionar um efeito roll */
+
